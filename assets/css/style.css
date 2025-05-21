@@ -1,0 +1,186 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+    background-color: #f5ffee;
+}
+h1 {
+    font-weight: 700;
+    color: #1bad20;
+}
+h2 {
+  font-weight: 700;
+  color: #1bad20;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+@media (max-width: 768px) {
+  .navbar form {
+    padding: 8px 0;
+  }
+}
+
+.navbar{
+  background: #1bad20;
+  
+}
+.navbar-nav {
+    margin-right: 10px;
+}
+.nav-item-custom {
+  margin-right: 30px;
+}
+.input-group {
+  margin-left: 35px;
+  width: 500px;
+  max-width: 100%;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+ 
+}
+.hero img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-group[role="group"] {
+  background-color: #F6F1E7; 
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+
+.btn-switch {
+  all: unset; 
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #4F3B2B;
+  background-color: #ffffff; 
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+}
+
+
+.btn-switch:hover {
+  background-color: #f6d830; 
+  color: white;
+}
+
+
+#btnSayur.active {
+  background-color: #31b007;
+  color: white;
+}
+
+
+#btnBuah.active {
+  background-color: #C94C3D;
+  color: white;
+}
+
+.btn-custom1 {
+  background-color: #1bad20;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border: none;
+}
+.btn-custom1:hover,
+.btn-custom1:focus,
+.btn-custom1:active,
+.btn-custom1:focus:active {
+  background-color: #239129;
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+.btn-custom2 {
+    margin-top: 4px;
+    background-color: red;
+    cursor: pointer;
+    border: none;
+}
+.btn-custom2:hover,
+.btn-custom2:focus,
+.btn-custom2:active,
+.btn-custom2:focus:active {
+  background-color: #c90303;
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-custom3 {
+  margin-top: 4px;
+  background-color: #D4A937;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+.btn-custom3:hover,
+.btn-custom3:focus,
+.btn-custom3:active,
+.btn-custom3:focus:active {
+background-color: #B38A28;
+color: white;
+outline: none;
+box-shadow: none;
+}
+
+.btn-custom4 {
+  margin-top: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+  border: none;
+}
+.btn-custom4:hover,
+.btn-custom4:focus,
+.btn-custom4:active,
+.btn-custom4:focus:active {
+color: black;
+outline: none;
+box-shadow: none;
+}
+.card-clean {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-clean:hover {
+    transform: translateY(-6px) translate3d(-2px,-9px,-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-clean img {
+    border-radius: 16px 16px 0 0; 
+    transition: transform 0.5s ease;
+  }
+
+  .card-clean:hover img {
+    transform: scale(1.05);
+  }
+  
+.card-footer {
+    border-top: none;
+    background-color: transparent; 
+    padding-bottom: 1.2rem;
+}
+.footer{
+  background: #f5ffee;
+}

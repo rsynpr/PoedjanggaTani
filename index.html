@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poedjangga Tani</title>
+    <link rel="icon" href="assets/img/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg  sticky-top">
+        <div class="container-fluid">
+  
+          <a class="navbar-brand" href="#home"><span style="color: #ffffff;"> Poedjangga Tani</span></a>
+
+          <div class="collapse navbar-collapse ms-auto">
+            
+            <ul class="navbar-nav" aria-current="page">
+              <li class="nav-item"><a class="nav-link text-white" href="#home">Beranda</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="#produk">Produk</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
+          <form class="d-flex w-100 mt-2 mt-lg-0" role="search" onsubmit="event.preventDefault(); filterCards();">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Telusuri" aria-label="Telusuri" name="cari" id="cari" onkeyup="filterCards()">
+            <a href="#produk" class="btn btn-outline-success" type="button" onclick="filterCards()"><i class="fa-solid fa-magnifying-glass"></i></a>
+          </div>
+          </form>
+          </div>
+
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item-custom"><a class="nav-link fs-5 fw-bold" href="keranjang.html"><i class="fa-solid fa-cart-plus fa-lg" style="color: #ffffff;"></i></a></li>
+            <li class="nav-item">
+                <a class="btn btn-custom2 text-white" href="login.html"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i></a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+        <section class="hero container-fluid" id="home">
+            <div class="row align-items-center mb-4">
+              <div class="col-md-6">
+                <h1 class="fw-bold text-custom">  "Fresh from petani, masuk keranjang tinggal klik."
+                </h1>
+                <p class=" text-mute mt-3">Di Poedjangga Tani, buah dan sayur nggak cuma segar, tapi juga tahu jalan ke rumahmu. Kami bukan tukang gombal, tapi tiap tomat kami manisnya serius. 
+                  Belanja hasil tani dari petani langsung tanpa perlu ke pasar dan tanpa drama rebutan cabe!</p>
+                <a href="#produk" class="btn btn-custom1 mt-3">Yuk Beli Sekarang</a>
+              </div>
+              <div class="col-md-6 text-center">
+                <img src="assets/img/logo.png" alt="Sayur" class="img-fluid">
+              </div>
+            </div>
+          </section>
+          
+
+
+    <div class="container my-4" id="produk">
+        <div class="d-flex justify-content-center mb-4">
+          <div class="btn-group" role="group" aria-label="Switch Produk">
+            <a href="#produk" type="button" class="btn btn-switch active" id="btnSayur" onclick="switchSection('sayur')"> 🥦 Sayur</a>
+            <a href="#produk" type="button" class="btn btn-switch" id="btnBuah" onclick="switchSection('buah')"> 🍎 Buah</a>
+          </div>
+        </div>
+        
+        <div id="section-sayur">
+          <h2>Daftar Sayur</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+          <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Bayam">
+            <div class="card card-clean">
+                <div class="col">
+                    <img src="assets/img/sayur/bayam.png" alt="Bayam" class="card-img-top" width="400px" height="300px" >
+                    <div class="card-body">
+                        <p>
+                            Bayam
+                        </p>
+                            <h5 class="card-tittle" >Rp5.000/ikat</h5>
+                            <div class="row">
+                                <div class="col-auto my-auto">
+                                  <p class="mb-0">10RB+ terjual</p>
+                                </div>
+                                <div class="col text-end card-footer">
+                                    <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Bayam', 5000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                  <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Bayam', 5000)">Beli Sekarang</a>
+                                </div>
+                              </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+          <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Kangkung">
+            <div class="card card-clean">
+                <div class="col">
+                    <img src="assets/img/sayur/kangkung.png" alt="Kangkung" class="card-img-top" width="400px" height="300px" >
+                    <div class="card-body">
+                        <p>
+                            Kangkung
+                        </p>
+                            <h5 class="card-tittle" >Rp3.000/ikat</h5>
+                            <div class="row">
+                                <div class="col-auto my-auto">
+                                  <p class="mb-0">10RB+ terjual</p>
+                                </div>
+                                <div class="col text-end card-footer">
+                                    <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Kangkung', 3000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                  <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Kangkung', 3000)">Beli Sekarang</a>
+                                </div>
+                              </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+          <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Wortel">
+            <div class="card card-clean">
+                <div class="col">
+                    <img src="assets/img/sayur/wortel.png" alt="Wortel" class="card-img-top" width="400px" height="300px" >
+                    <div class="card-body">
+                        <p>
+                            Wortel
+                        </p>
+                            <h5 class="card-tittle" >Rp2.500/ons</h5>
+                            <div class="row">
+                                <div class="col-auto my-auto">
+                                  <p class="mb-0">10RB+ terjual</p>
+                                </div>
+                                <div class="col text-end card-footer">
+                                    <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Wortel', 2500)"><i class="fa-solid fa-cart-plus"></i></a>
+                                  <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Wortel', 2500)">Beli Sekarang</a>
+                                </div>
+                              </div>
+                        </div>
+                </div>
+>            </div>
+        </div>
+            <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Labu Siam">
+                <div class="card card-clean">
+                    <div class="col">
+                        <img src="assets/img/sayur/labusiam.png" alt="Labu Siam" class="card-img-top" width="400px" height="300px" >
+                        <div class="card-body">
+                            <p>
+                                Labu Siam
+                            </p>
+                                <h5 class="card-tittle" >Rp1.000/ons</h5>
+                                <div class="row">
+                                    <div class="col-auto my-auto">
+                                      <p class="mb-0">10RB+ terjual</p>
+                                    </div>
+                                    <div class="col text-end card-footer">
+                                        <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Labu Siam', 1000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                      <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Labu Siam', 1000)">Beli Sekarang</a>
+                                    </div>
+                                  </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-md-6 col-lg-4 mb-4 sayur-card " data-title="Kentang">
+                <div class="card card-clean">
+                    <div class="col">
+                        <img src="assets/img/sayur/kentang.png" alt="Kentang" class="card-img-top" width="400px" height="300px">
+                        <div class="card-body">
+                            <p>
+                                Kentang
+                            </p>
+                                <h5 class="card-tittle" >Rp3.000/ons</h5>
+                                <div class="row">
+                                    <div class="col-auto my-auto">
+                                      <p class="mb-0">8RB+ terjual</p>
+                                    </div>
+                                    <div class="col text-end card-footer">
+                                        <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Kentang', 3000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                      <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Kentang', 3000)">Beli Sekarang</a>
+                                    </div>
+                                  </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Sawi Hijau">
+                <div class="card card-clean">
+                    <div class="col">
+                        <img src="assets/img/sayur/sawi hijau.png" alt="Sawi Hijau" class="card-img-top" width="400px" height="300px">
+                        <div class="card-body">
+                            <p>
+                                Sawi Hijau
+                            </p>
+                                <h5 class="card-tittle" >Rp5.000/ikat</h5>
+                                <div class="row">
+                                    <div class="col-auto my-auto">
+                                      <p class="mb-0">9RB+ terjual</p>
+                                    </div>
+                                    <div class="col text-end card-footer">
+                                        <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Sawi Hijau', 5000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                      <a href="keranjang.html" class="btn btn-custom3 " onclick="belisekarang('Sawi Hijau', 5000)">Beli Sekarang</a>
+                                    </div>
+                                  </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Kacang Panjang">
+                <div class="card card-clean">
+                    <div class="col">
+                        <img src="assets/img/sayur/kacang panjang.png" alt="Kacang Panjang" class="card-img-top" width="400px" height="300px">
+                        <div class="card-body">
+                            <p>
+                                Kacang Panjang
+                            </p>
+                                <h5 class="card-tittle" >Rp3.000/ikat</h5>
+                                <div class="row">
+                                    <div class="col-auto my-auto">
+                                      <p class="mb-0">10RB+ terjual</p>
+                                    </div>
+                                    <div class="col text-end card-footer">
+                                        <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Kacang Panjang', 3000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                      <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Kacang Panjang', 3000)">Beli Sekarang</a>
+                                    </div>
+                                  </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Buncis">
+                <div class="card card-clean">
+                    <div class="col">
+                        <img src="assets/img/sayur/buncis.png" alt="Buncis" class="card-img-top" width="400px" height="300px">
+                        <div class="card-body">
+                            <p>
+                              Buncis
+                            </p>
+                                <h5 class="card-tittle" >Rp3.000/ons</h5>
+                                <div class="row">
+                                    <div class="col-auto my-auto">
+                                      <p class="mb-0">5RB+ terjual</p>
+                                    </div>
+                                    <div class="col text-end card-footer">
+                                        <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Buncis', 3000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                      <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Buncis', 3000)">Beli Sekarang</a>
+                                    </div>
+                                  </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Kobis">
+                <div class="card card-clean">
+                    <div class="col">
+                        <img src="assets/img/sayur/kobis.png" alt="Kobis" class="card-img-top" width="400px" height="300px">
+                        <div class="card-body">
+                            <p>
+                                Kobis
+                            </p>
+                                <h5 class="card-tittle" >Rp8.000/kg</h5>
+                                <div class="row">
+                                    <div class="col-auto my-auto">
+                                      <p class="mb-0">15RB+ terjual</p>
+                                    </div>
+                                    <div class="col text-end card-footer">
+                                        <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Kobis', 8000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                      <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Kobis', 8000)">Beli Sekarang</a>
+                                    </div>
+                                  </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+<!-- Buah -->
+ <div id="section-buah" class="d-none">
+  <h2>Daftar Buah</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4  mt-2">
+      <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Alpukat">
+          <div class="card card-clean">
+              <div class="col">
+                  <img src="assets/img/buah/alpukat.png" alt="Alpukat" class="card-img-top" width="400px" height="300px" >
+                  <div class="card-body">
+                      <p>
+                          Alpukat
+                      </p>
+                          <h5 class="card-tittle" >Rp5.000/100g</h5>
+                          <div class="row">
+                              <div class="col-auto my-auto">
+                                <p class="mb-0">10RB+ terjual</p>
+                              </div>
+                              <div class="col text-end card-footer">
+                                  <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Alpukat', 5000)"><i class="fa-solid fa-cart-plus"></i></a>
+                                <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang('Alpukat', 5000)">Beli Sekarang</a>
+                              </div>
+                            </div>
+                      </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Semangka">
+        <div class="card card-clean">
+            <div class="col">
+                <img src="assets/img/buah/semangka.png" alt="Semangka" class="card-img-top" width="400px" height="300px">
+                <div class="card-body">
+                    <p>
+                      Semangka
+                    </p>
+                        <h5 class="card-tittle" >Rp4.000/100g</h5>
+                        <div class="row">
+                            <div class="col-auto my-auto">
+                              <p class="mb-0">5RB+ terjual</p>
+                            </div>
+                            <div class="col text-end card-footer">
+                                <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Semangka', 4000)"><i class="fa-solid fa-cart-plus"></i></a>
+                              <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Semangka', 4000)">Beli Sekarang</a>
+                            </div>
+                          </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Jeruk">
+      <div class="card card-clean">
+          <div class="col">
+              <img src="assets/img/buah/jeruk.png" alt="Jeruk" class="card-img-top" width="400px" height="300px">
+              <div class="card-body">
+                  <p>
+                    Jeruk
+                  </p>
+                      <h5 class="card-tittle" >Rp5.000/100g</h5>
+                      <div class="row">
+                          <div class="col-auto my-auto">
+                            <p class="mb-0">5RB+ terjual</p>
+                          </div>
+                          <div class="col text-end card-footer">
+                              <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Jeruk', 5000)"><i class="fa-solid fa-cart-plus"></i></a>
+                            <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Jeruk', 5000)">Beli Sekarang</a>
+                          </div>
+                        </div>
+                  </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Lemon">
+    <div class="card card-clean">
+        <div class="col">
+            <img src="assets/img/buah/lemon.png" alt="Lemon" class="card-img-top" width="300px" height="300px">
+            <div class="card-body">
+                <p>
+                  Lemon
+                </p>
+                    <h5 class="card-tittle" >Rp8.500/100g</h5>
+                    <div class="row">
+                        <div class="col-auto my-auto">
+                          <p class="mb-0">5RB+ terjual</p>
+                        </div>
+                        <div class="col text-end card-footer">
+                            <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Lemon', 8500)"><i class="fa-solid fa-cart-plus"></i></a>
+                          <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Lemon', 8500)">Beli Sekarang</a>
+                        </div>
+                      </div>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Manggga">
+  <div class="card card-clean">
+      <div class="col">
+          <img src="assets/img/buah/mangga.png" alt="Mangga" class="card-img-top" width="400px" height="300px">
+          <div class="card-body">
+              <p>
+                Mangga
+              </p>
+                  <h5 class="card-tittle" >Rp4.000/100g</h5>
+                  <div class="row">
+                      <div class="col-auto my-auto">
+                        <p class="mb-0">5RB+ terjual</p>
+                      </div>
+                      <div class="col text-end card-footer">
+                          <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Mangga', 4000)"><i class="fa-solid fa-cart-plus"></i></a>
+                        <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Mangga', 4000)">Beli Sekarang</a>
+                      </div>
+                    </div>
+              </div>
+      </div>
+  </div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Buah Naga">
+  <div class="card card-clean">
+      <div class="col">
+          <img src="assets/img/buah/buahnaga.png" alt="Buah Naga" class="card-img-top" width="400px" height="300px">
+          <div class="card-body">
+              <p>
+                Buah Naga
+              </p>
+                  <h5 class="card-tittle" >Rp23.900/kg</h5>
+                  <div class="row">
+                      <div class="col-auto my-auto">
+                        <p class="mb-0">5RB+ terjual</p>
+                      </div>
+                      <div class="col text-end card-footer">
+                          <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Buah Naga', 23900)"><i class="fa-solid fa-cart-plus"></i></a>
+                        <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Buah Naga', 23900)">Beli Sekarang</a>
+                      </div>
+                    </div>
+              </div>
+      </div>
+  </div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Kiwi">
+  <div class="card card-clean">
+      <div class="col">
+          <img src="assets/img/buah/kiwi.png" alt="Kiwi" class="card-img-top" width="400px" height="300px">
+          <div class="card-body">
+              <p>
+                Kiwi
+              </p>
+                  <h5 class="card-tittle" >Rp83.000/kg</h5>
+                  <div class="row">
+                      <div class="col-auto my-auto">
+                        <p class="mb-0">5RB+ terjual</p>
+                      </div>
+                      <div class="col text-end card-footer">
+                          <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Kiwi', 83000)"><i class="fa-solid fa-cart-plus"></i></a>
+                        <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Kiwi', 83000)">Beli Sekarang</a>
+                      </div>
+                    </div>
+              </div>
+      </div>
+  </div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Apel">
+  <div class="card card-clean">
+      <div class="col">
+          <img src="assets/img/buah/apel.png" alt="Apel" class="card-img-top" width="400px" height="300px">
+          <div class="card-body">
+              <p>
+                Apel
+              </p>
+                  <h5 class="card-tittle" >Rp32.000/kg</h5>
+                  <div class="row">
+                      <div class="col-auto my-auto">
+                        <p class="mb-0">5RB+ terjual</p>
+                      </div>
+                      <div class="col text-end card-footer">
+                          <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Apel', 32000)"><i class="fa-solid fa-cart-plus"></i></a>
+                        <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Apel', 32000)">Beli Sekarang</a>
+                      </div>
+                    </div>
+              </div>
+      </div>
+  </div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4 sayur-card" data-title="Anggur">
+  <div class="card card-clean">
+      <div class="col">
+          <img src="assets/img/buah/anggur.png" alt="Anggur" class="card-img-top" width="400px" height="300px">
+          <div class="card-body">
+              <p>
+                Anggur
+              </p>
+                  <h5 class="card-tittle" >Rp26.950/kg</h5>
+                  <div class="row">
+                      <div class="col-auto my-auto">
+                        <p class="mb-0">5RB+ terjual</p>
+                      </div>
+                      <div class="col text-end card-footer">
+                          <a href="keranjang.html" class="btn btn-custom4" onclick="tambahKeKeranjang('Anggur', 26950)"><i class="fa-solid fa-cart-plus"></i></a>
+                        <a href="keranjang.html" class="btn btn-custom3" onclick="belisekarang(' Anggur', 26950)">Beli Sekarang</a>
+                      </div>
+                    </div>
+              </div>
+      </div>
+  </div>
+</div>
+
+  </div>
+</div>
+</body>
+<footer class="footer p-4 text-center text-black">
+  &copy; 2025 Poedjangga Tani. All rights reserved.
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" ></script>
+<script src="assets/js/script.js"></script>
+</html>

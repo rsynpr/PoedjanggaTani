@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" href="assets/img/logo.png">
+    <link rel="stylesheet" href="assets/css/about.css" />
+    <title>About - Poedjangga Tani</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg  sticky-top">
+      <div class="container-fluid">
+
+        <a class="navbar-brand" href="index.html#home"><span style="color: #ffffff;"> Poedjangga Tani</span></a>
+
+        <div class="collapse navbar-collapse ms-auto">
+          
+          <ul class="navbar-nav" aria-current="page">
+            <li class="nav-item"><a class="nav-link text-white" href="index.html#home">Beranda</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="index.html#produk">Produk</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
+        <form class="d-flex w-100 mt-2 mt-lg-0" role="search" onsubmit="event.preventDefault(); filterCards();">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Telusuri" aria-label="Telusuri" name="cari" id="cari" onkeyup="filterCards()">
+          <a href="index.html#produk" class="btn btn-outline-success" type="button" onclick="filterCards()"><i class="fa-solid fa-magnifying-glass"></i></a>
+        </div>
+        </form>
+        </div>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item-custom"><a class="nav-link fs-5 fw-bold" href="keranjang.html"><i class="fa-solid fa-cart-plus fa-lg" style="color: #ffffff;"></i></a></li>
+          <li class="nav-item">
+              <a class="btn btn-custom1 text-white" href="login.html"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i></a>
+          </li>
+        </ul>
+      </div>
+  </nav>
+
+    <div class="container container-fluid mt-5 mb-5">
+      <div class="row">
+        <div class="col-12 text-start">
+          <h1 class="fw-bold mb-3">About</h1>
+          <p>
+            <b>Poedjangga Tani</b> adalah platform belanja hasil pertanian yang menghubungkan petani lokal langsung dengan konsumen, tanpa perantara.
+            Dengan motto <b>"Fresh from petani, masuk keranjang tinggal klik."</b>, kami hadir untuk memudahkan siapa pun mendapatkan buah dan sayur segar langsung dari sumbernya tanpa harus repot ke pasar.
+          </p>
+
+          <p>
+            Kami percaya bahwa setiap orang berhak menikmati hasil bumi yang <b>segar</b>,<b>berkualitas</b> dan <b> terjangkau</b>.
+            Dengan berbelanja di Poedjangga Tani, Anda juga ikut mendukung petani lokal untuk mendapatkan penghasilan yang layak, tanpa potongan dari tengkulak.
+          </p>
+
+          <p>
+            <p><b>Kenapa memilih Poedjangga Tani?</b></p>
+            <p><b>🥬 Langsung dari petani</b> : Produk dikirim langsung dari ladang ke rumah Anda. Tidak lewat tangan kedua.</p>
+            <p><b>💸 Harga bersahabat</b> : Tanpa perantara, harga lebih murah dan petani lebih sejahtera.</p>
+            <p><b>📦 Belanja super mudah</b> : Cukup klik, bayar, dan panen pun tiba di depan pintu Anda.</p><br>
+            <p> Bersama Poedjangga Tani, mari bangun ekosistem pertanian yang adil, segar, dan modern untuk petani yang berdaya, dan dapur yang penuh kebaikan.</p>
+          </p>
+        </div>
+      </div>
+      
+      <h1 class="fw-bold mt-3">Our Team</h1>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-4 mt-3">
+        <div class="col text-center">
+          <img src="assets/img/team/Dea.jpg" alt="CEO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Kaldea</h5>
+          <p class="text-muted">CEO</p>
+        </div>
+      
+        <div class="col text-center">
+          <img src="assets/img/team/zar.jpg" alt="CTO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Nizar</h5>
+          <p class="text-muted">CTO</p>
+        </div>
+
+        <div class="col text-center">
+          <img src="assets/img/team/Faiq.jpg" alt="CFO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Faiq</h5>
+          <p class="text-muted">CFO</p>
+        </div>
+
+        <div class="col text-center">
+          <img src="assets/img/team/Septi.jpg" alt="CMO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Septi</h5>
+          <p class="text-muted">CMO</p>
+        </div>
+      
+        <div class="col text-center">
+          <img src="assets/img/team/Gunawan.jpg" alt="COO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Gunawan</h5>
+          <p class="text-muted">COO</p>
+        </div>
+      
+        <div class="col text-center">
+          <img src="assets/img/team/Galih.jpg" alt="COO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Galih</h5>
+          <p class="text-muted">COO</p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </body>
+</html>

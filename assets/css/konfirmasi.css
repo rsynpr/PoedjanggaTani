@@ -1,0 +1,17 @@
+body {
+  color: #f5ffee;
+  padding: 4rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5ffee;
+  overflow: hidden;
+  margin: 0;
+}
+.card-konfirmasi {
+  background: #1bb920;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+.btn-back {
+  margin-top: 2rem;
+}

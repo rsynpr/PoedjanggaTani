@@ -1,0 +1,49 @@
+body{
+  background-color: #f5ffee;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+@media (max-width: 768px) {
+  .navbar form {
+    padding: 8px 0;
+  }
+}
+
+.navbar{
+  background: #1bad20;
+  
+}
+.navbar-nav {
+    margin-right: 10px;
+}
+.nav-item-custom {
+  margin-right: 30px;
+}
+.input-group {
+  margin-left: 35px;
+  width: 500px;
+  max-width: 100%;
+}
+h1 {
+  font-weight: 700;
+  color: #1bad20;
+  border-bottom: 2px solid #1bad20;
+}
+.btn-custom1 {
+  margin-top: 4px;
+  background-color: red;
+  cursor: pointer;
+  border: none;
+}
+.btn-custom1:hover,
+.btn-custom1:focus,
+.btn-custom1:active,
+.btn-custom1:focus:active {
+background-color: #c90303;
+color: white;
+outline: none;
+box-shadow: none;
+}

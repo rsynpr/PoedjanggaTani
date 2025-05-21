@@ -1,0 +1,118 @@
+body {
+  background-color: #f5ffee;
+}
+
+.keranjang-container {
+  max-width: 720px;
+  margin: auto;
+  background-color: #1bb920;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.keranjang-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+}
+
+.keranjang-header h2 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: #fffffe;
+  margin: 0;
+}
+
+.btn-kembali {
+  background-color: #f8b96c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+}
+.btn-kembali:hover,
+.btn-kembali:focus,
+.btn-kembali:active,
+.btn-kembali:focus:active {
+background-color: #cf9a59;
+color: white;
+outline: none;
+box-shadow: none;
+}
+
+.total-harga {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #5a743f;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #D7A65F;
+}
+
+.btn-hapus-semua {
+  background-color: #fe2929;
+  color: #FCFAF5 ;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-hapus-semua:hover,
+.btn-hapus-semua:focus,
+.btn-hapus-semua:active,
+.btn-hapus-semua:focus:active {
+  background-color: #b30808;
+  color: #fff;
+  outline: none;
+  box-shadow: none;
+}
+
+
+
+.btn-bayar {
+  margin-top: 4px;
+  background-color: #f8b96c;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+.btn-bayar:hover,
+.btn-bayar:focus,
+.btn-bayar:active,
+.btn-bayar:focus:active {
+background-color: #cf9a59;
+color: white;
+outline: none;
+box-shadow: none;
+}
+
+.btn-custom {
+  margin-top: 4px;
+  background-color: red;
+  border: 1px solid red ;
+  cursor: pointer;
+  
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom:focus:active {
+background-color: red;
+color: white;
+outline: none;
+box-shadow: none;
+}
+
+select.form-select {
+  border-radius: 10px;
+  background-color: #fffaf0;
+}
+
+ul.list-group li {
+  background-color: #fffef9;
+  border: 1px solid #e9e2d0;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
