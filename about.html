@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -11,38 +12,88 @@
     <title>About - Poedjangga Tani</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg  sticky-top">
-      <div class="container-fluid">
+     <nav class="navbar navbar-expand-lg sticky-top px-3">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
 
-        <a class="navbar-brand" href="index.html#home"><span style="color: #ffffff;"> Poedjangga Tani</span></a>
+ 
+    <a class="navbar-brand text-white fw-bold" href="#home">Poedjangga Tani</a>
 
-        <div class="collapse navbar-collapse ms-auto">
-          
-          <ul class="navbar-nav" aria-current="page">
-            <li class="nav-item"><a class="nav-link text-white" href="index.html#home">Beranda</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="index.html#produk">Produk</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
-        <form class="d-flex w-100 mt-2 mt-lg-0" role="search" onsubmit="event.preventDefault(); filterCards();">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Telusuri" aria-label="Telusuri" name="cari" id="cari" onkeyup="filterCards()">
-          <a href="index.html#produk" class="btn btn-outline-success" type="button" onclick="filterCards()"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </div>
-        </form>
-        </div>
 
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item-custom"><a class="nav-link fs-5 fw-bold" href="keranjang.html"><i class="fa-solid fa-cart-plus fa-lg" style="color: #ffffff;"></i></a></li>
-          <li class="nav-item">
-              <a class="btn btn-custom1 text-white" href="login.html"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i></a>
-          </li>
+    <div class="d-lg-none d-flex align-items-center gap-2">
+  
+     <button class="navbar-toggler me-2 border-0 bg-white rounded shadow-sm px-2 py-1"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+        aria-controls="navbarContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        style="transition: all 0.3s ease;">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    
+      <div class="dropdown">
+        <a class="text-white nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-circle-user fa-lg me-1"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 180px;">
+          <li><a class="dropdown-item" href="profil.html"><i class="fa-solid fa-user me-2"></i> Profil</a></li>
+          <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Keluar</a></li>
         </ul>
       </div>
-  </nav>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link text-white" href="index.html#beranda">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="index.html#produk">Produk</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="about.html">Tentang</a></li>
+      </ul>
+
+  
+      <form class="d-flex mx-auto w-50 justify-content-center" role="search" onsubmit="event.preventDefault(); filterCards();">
+        <div class="input-group w-100">
+          <input type="text" class="form-control" placeholder="Cari produk segar..." id="cari" onkeyup="filterCards()">
+          <button class="btn btn-light" type="button" onclick="filterCards()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+
+   
+      <ul class="navbar-nav ms-auto d-none d-lg-flex">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-circle-user fa-lg me-1"></i>
+            <span class="d-none d-md-inline text-white" id="namaNavbar">Akun</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 180px;">
+            <li><a class="dropdown-item" href="profil.html"><i class="fa-solid fa-user me-2"></i> Profil</a></li>
+            <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="login.html"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Keluar</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+       <a href="https://wa.me/6289618203695" class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        </a>
 
     <div class="container container-fluid mt-5 mb-5">
       <div class="row">
         <div class="col-12 text-start">
-          <h1 class="fw-bold mb-3">About</h1>
+          <h1 class="fw-bold mb-3">Tentang</h1>
           <p>
             <b>Poedjangga Tani</b> adalah platform belanja hasil pertanian yang menghubungkan petani lokal langsung dengan konsumen, tanpa perantara.
             Dengan motto <b>"Fresh from petani, masuk keranjang tinggal klik."</b>, kami hadir untuk memudahkan siapa pun mendapatkan buah dan sayur segar langsung dari sumbernya tanpa harus repot ke pasar.
@@ -63,7 +114,7 @@
         </div>
       </div>
       
-      <h1 class="fw-bold mt-3">Our Team</h1>
+      <h1 class="fw-bold mt-3">Team Kami</h1>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-4 mt-3">
         <div class="col text-center">

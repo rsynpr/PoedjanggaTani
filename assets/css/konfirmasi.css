@@ -1,17 +1,93 @@
+
 body {
-  color: #f5ffee;
-  padding: 4rem;
+  color: #2e4d29;
+  background: linear-gradient(135deg, #f5ffee, #e3f6da);
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f5ffee;
-  overflow: hidden;
+  padding: 3rem;
   margin: 0;
 }
+
 .card-konfirmasi {
-  background: #1bb920;
+  background: #ffffff;
+  border-left: 8px solid #1bb920;
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease;
 }
+
+.card-konfirmasi h2 {
+  color: #1bb920;
+  font-weight: bold;
+}
+
+.card-konfirmasi p {
+  font-size: 1.1rem;
+}
+
+#detail-pembayaran ul {
+  list-style-type: none;
+  padding: 0;
+}
+#detail-pembayaran li {
+  padding: 0.3rem 0;
+  font-weight: 500;
+}
+
+
 .btn-back {
+  background-color: #1bb920;
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(27, 185, 32, 0.3);
+  transition: all 0.3s ease;
+}
+.btn-back:hover,
+.btn-custom1:focus,
+.btn-custom1:active,
+.btn-custom1:focus:active {
+   background-color: #158a1a;
+  transform: translateY(-2px);
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+#uploadBuktiWrapper {
   margin-top: 2rem;
+}
+#uploadBuktiWrapper input[type="file"] {
+  border: 2px solid #1bb920;
+  background-color: #f8fff5;
+  color: #2e4d29;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+#uploadBuktiWrapper label {
+  color: #2e4d29;
+  font-weight: 600;
+}
+
+
+#previewBukti img {
+  max-width: 300px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  border: 1px solid #cde5cd;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }

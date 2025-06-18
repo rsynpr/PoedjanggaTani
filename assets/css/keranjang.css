@@ -1,14 +1,18 @@
+
 body {
   background-color: #f5ffee;
+  font-family: 'Segoe UI', sans-serif;
 }
+
 
 .keranjang-container {
   max-width: 720px;
   margin: auto;
-  background-color: #1bb920;
+  background-color: #ffffff;
+  border-left: 8px solid #1bb920;
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
 }
 
 .keranjang-header {
@@ -17,102 +21,159 @@ body {
   gap: 1rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
+  border-bottom: 2px solid #d2eec3;
 }
 
 .keranjang-header h2 {
   font-weight: 700;
   font-size: 1.75rem;
-  color: #fffffe;
+  color: #1bb920;
   margin: 0;
 }
 
+
 .btn-kembali {
   background-color: #f8b96c;
-  color: white;
-  border: none;
+  color: #fff;
   border-radius: 8px;
   padding: 0.4rem 0.8rem;
+  transition: background 0.3s;
+  font-weight: bold;
+  border: none;
 }
 .btn-kembali:hover,
 .btn-kembali:focus,
 .btn-kembali:active,
 .btn-kembali:focus:active {
-background-color: #cf9a59;
-color: white;
-outline: none;
-box-shadow: none;
+  background-color: #cf9a59;
+  color: white;
+  outline: none;
+  box-shadow: none;
 }
 
 .total-harga {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #5a743f;
+  color: #4b6539;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #D7A65F;
+  border-bottom: 2px solid #d7a65f;
+  padding-bottom: 0.3rem;
 }
+
 
 .btn-hapus-semua {
   background-color: #fe2929;
-  color: #FCFAF5 ;
-  border-radius: 10px;
-  cursor: pointer;
+  color: #fff;
+  border-radius: 8px;
   border: none;
+  padding: 0.4rem 0.8rem;
+  transition: background 0.3s;
 }
-
 .btn-hapus-semua:hover,
 .btn-hapus-semua:focus,
 .btn-hapus-semua:active,
 .btn-hapus-semua:focus:active {
   background-color: #b30808;
-  color: #fff;
+  color: white;
   outline: none;
   box-shadow: none;
 }
 
 
-
 .btn-bayar {
   margin-top: 4px;
   background-color: #f8b96c;
-  cursor: pointer;
   color: white;
   border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 .btn-bayar:hover,
 .btn-bayar:focus,
 .btn-bayar:active,
 .btn-bayar:focus:active {
-background-color: #cf9a59;
-color: white;
-outline: none;
-box-shadow: none;
+  background-color: #cf9a59;
+  color: white;
+  outline: none;
+  box-shadow: none;
 }
 
+
 .btn-custom {
-  margin-top: 4px;
-  background-color: red;
-  border: 1px solid red ;
-  cursor: pointer;
-  
+  background-color: #fe4f4f;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  color: white;
+  border-radius: 6px;
+  transition: background 0.3s;
 }
-.btn-custom:hover,
-.btn-custom:focus,
-.btn-custom:active,
-.btn-custom:focus:active {
-background-color: red;
-color: white;
-outline: none;
-box-shadow: none;
+.btn-custom:hover {
+  background-color: #b02e2e;
 }
+
 
 select.form-select {
   border-radius: 10px;
-  background-color: #fffaf0;
+  background-color: #f9f6ec;
+  border: 1px solid #dcd6c1;
+  padding: 0.5rem;
+  color: #3b3b3b;
 }
 
+
 ul.list-group li {
-  background-color: #fffef9;
-  border: 1px solid #e9e2d0;
+  background-color: #fdfcf6;
+  border: 1px solid #e4dcc4;
   border-radius: 10px;
   margin-bottom: 0.5rem;
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.whatsapp-float {
+  position: fixed;
+  width: 65px;
+  height: 65px;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #25d366, #1ebea5);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 32px;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.7);
+  z-index: 999;
+  animation: bounce-in 0.6s ease-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(6deg);
+  box-shadow: 0 0 25px rgba(30, 190, 165, 0.9);
+  background: linear-gradient(135deg, #1ebea5, #25d366);
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-10px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.whatsapp-icon {
+  color: white;
 }
