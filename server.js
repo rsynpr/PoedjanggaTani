@@ -9,7 +9,7 @@ const authRoutes = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// ✅ CORS Config Diletakkan di Atas
 const corsOptions = {
   origin: [
     'https://poedjangga-tani.vercel.app',
@@ -19,13 +19,14 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions)); // ⬅️ Ini penting untuk OPTIONS
 
+// Middleware Lain
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Logging opsional (boleh dipertahankan)
+// Logging opsional
 app.use((req, res, next) => {
   if (req.method === "POST") {
     let body = [];
@@ -37,10 +38,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// Ini cukup satu kali
+// Routing API
 app.use('/api/auth', authRoutes);
 
-// Database
+// Connect DB & Start Server
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('✅ MongoDB connected');
