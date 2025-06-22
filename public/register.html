@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Poedjangga Tani</title>
+    <link rel="icon" href="assets/img/logo.png" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/register.css" />
+    <style>
+      .form-control {
+        position: relative;
+        z-index: 2;
+        pointer-events: auto;
+      }
+      .form-label {
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://wa.me/6289618203695" class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        </a>
+
+      <div class="register-wrapper">
+    <div class="register-box">
+      <h2>Daftar Akun</h2>
+      <form id="registerForm">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" name="nama" placeholder="Nama lengkapmu" required />
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Nama khasmu" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="tani@buahsegar.id" required />
+
+        <label for="password">Kata Sandi</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" name="password" placeholder="Kata rahasia kebunmu" required />
+         <span
+      onclick="togglePassword('password', this)"
+      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #558b2f; font-size: 0.9rem;"
+    >
+     <i class="fa-solid fa-eye" style="color: #000000;"></i>
+    </span>
+        </div>
+
+          <label for="nohp">No Telepon</label>
+        <input type="tel" id="nohp" name="nohp" placeholder="08xxxxxxxxxx" required />
+
+        <label for="alamat">Alamat</label>
+        <textarea id="alamat" name="alamat" placeholder="Alamat lengkap" required></textarea>
+
+        <button type="submit" class="btn-register">Daftar</button>
+
+        <p class="text-small">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+      </form>
+    </div>
+  </div>
+    
+    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const nama = document.getElementById("nama").value;
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const nohp = document.getElementById("nohp").value;
+  const alamat = document.getElementById("alamat")?.value || "";
+
+  const res = await fetch("http://localhost:5000/api/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nama, username, email, password, nohp, alamat })
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    alert("Registrasi berhasil");
+    location.href = "login.html";
+  } else {
+    alert(data.error || "Registrasi gagal");
+  }
+});
+
+  </script>
+  </body>
+</html>

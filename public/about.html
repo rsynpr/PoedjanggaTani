@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" href="assets/img/logo.png">
+    <link rel="stylesheet" href="assets/css/about.css" />
+    <title>About - Poedjangga Tani</title>
+  </head>
+  <body>
+     <nav class="navbar navbar-expand-lg sticky-top px-3">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+
+ 
+    <a class="navbar-brand text-white fw-bold" href="index.html#home">Poedjangga Tani</a>
+
+
+    <div class="d-lg-none d-flex align-items-center gap-2">
+  
+     <button class="navbar-toggler me-2 border-0 bg-white rounded shadow-sm px-2 py-1"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+        aria-controls="navbarContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        style="transition: all 0.3s ease;">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    
+      <div class="dropdown">
+        <a class="text-white nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-circle-user fa-lg me-1"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 180px;">
+          <li><a class="dropdown-item" href="profil.html"><i class="fa-solid fa-user me-2"></i> Profil</a></li>
+          <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Keluar</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link text-white" href="index.html#beranda">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="index.html#produk">Produk</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="about.html">Tentang</a></li>
+      </ul>
+
+  
+      <form class="d-flex mx-auto w-50 justify-content-center" role="search" onsubmit="event.preventDefault(); filterCards();">
+        <div class="input-group w-100">
+          <input type="text" class="form-control" placeholder="Cari produk segar..." id="cari" onkeyup="filterCards()">
+          <button class="btn btn-light" type="button" onclick="filterCards()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+
+   
+      <ul class="navbar-nav ms-auto d-none d-lg-flex">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-circle-user fa-lg me-1"></i>
+            <span class="d-none d-md-inline text-white" id="namaNavbar">Akun</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 180px;">
+            <li><a class="dropdown-item" href="profil.html"><i class="fa-solid fa-user me-2"></i> Profil</a></li>
+            <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="logout()">
+ <i class="fa-solid fa-right-from-bracket" style="color: #e60000;"></i> Logout
+</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+       <a href="https://wa.me/6289618203695" class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        </a>
+
+    <div class="container container-fluid mt-5 mb-5">
+      <div class="row">
+        <div class="col-12 text-start">
+          <h1 class="fw-bold mb-3">Tentang</h1>
+          <p>
+            <b>Poedjangga Tani</b> adalah platform belanja hasil pertanian yang menghubungkan petani lokal langsung dengan konsumen, tanpa perantara.
+            Dengan motto <b>"Fresh from petani, masuk keranjang tinggal klik."</b>, kami hadir untuk memudahkan siapa pun mendapatkan buah dan sayur segar langsung dari sumbernya tanpa harus repot ke pasar.
+          </p>
+
+          <p>
+            Kami percaya bahwa setiap orang berhak menikmati hasil bumi yang <b>segar</b>,<b>berkualitas</b> dan <b> terjangkau</b>.
+            Dengan berbelanja di Poedjangga Tani, Anda juga ikut mendukung petani lokal untuk mendapatkan penghasilan yang layak, tanpa potongan dari tengkulak.
+          </p>
+
+          <p>
+            <p><b>Kenapa memilih Poedjangga Tani?</b></p>
+            <p><b>🥬 Langsung dari petani</b> : Produk dikirim langsung dari ladang ke rumah Anda. Tidak lewat tangan kedua.</p>
+            <p><b>💸 Harga bersahabat</b> : Tanpa perantara, harga lebih murah dan petani lebih sejahtera.</p>
+            <p><b>📦 Belanja super mudah</b> : Cukup klik, bayar, dan panen pun tiba di depan pintu Anda.</p><br>
+            <p> Bersama Poedjangga Tani, mari bangun ekosistem pertanian yang adil, segar, dan modern untuk petani yang berdaya, dan dapur yang penuh kebaikan.</p>
+          </p>
+        </div>
+      </div>
+      
+      <h1 class="fw-bold mt-3">Team Kami</h1>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-4 mt-3">
+        <div class="col text-center">
+          <img src="assets/img/team/Dea.jpg" alt="CEO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Kaldea</h5>
+          <p class="text-muted">CEO</p>
+        </div>
+      
+        <div class="col text-center">
+          <img src="assets/img/team/zar.jpg" alt="CTO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Nizar</h5>
+          <p class="text-muted">CTO</p>
+        </div>
+
+        <div class="col text-center">
+          <img src="assets/img/team/Faiq.jpg" alt="CFO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Faiq</h5>
+          <p class="text-muted">CFO</p>
+        </div>
+
+        <div class="col text-center">
+          <img src="assets/img/team/Septi.jpg" alt="CMO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Septi</h5>
+          <p class="text-muted">CMO</p>
+        </div>
+      
+        <div class="col text-center">
+          <img src="assets/img/team/Gunawan.jpg" alt="COO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Gunawan</h5>
+          <p class="text-muted">COO</p>
+        </div>
+      
+        <div class="col text-center">
+          <img src="assets/img/team/Galih.jpg" alt="COO" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+          <h5>Galih</h5>
+          <p class="text-muted">COO</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+  <footer class="footer p-4 text-center text-black">
+  &copy; 2025 Poedjangga Tani. All rights reserved.
+</footer>
+  <script>
+    function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+}
+  async function fetchWithToken(url, options = {}) {
+    let token = localStorage.getItem("token");
+
+    options.headers = {
+      ...(options.headers || {}),
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    };
+
+    let response = await fetch(url, options);
+
+    if (response.status === 401 || response.status === 403) {
+      const refresh = await fetch("http://localhost:5000/api/auth/refresh", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (refresh.ok) {
+        const data = await refresh.json();
+        localStorage.setItem("token", data.accessToken);
+        options.headers.Authorization = "Bearer " + data.accessToken;
+        response = await fetch(url, options); // retry
+      } else {
+        localStorage.removeItem("token");
+        return null;
+      }
+    }
+
+    return response;
+  }
+
+  async function loadNamaNavbar() {
+    const res = await fetchWithToken("http://localhost:5000/api/auth/profile");
+
+    if (!res || !res.ok) return;
+
+    const data = await res.json();
+    const navbar = document.getElementById("namaNavbar");
+
+    if (navbar && data.user?.nama) {
+      const username = data.user.username.split(" ")[0];
+      navbar.textContent = `Hai, ${username} `;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadNamaNavbar);
+  function checkSessionExpiration() {
+    const expiresAt = localStorage.getItem("expiresAt");
+
+    if (expiresAt && Date.now() > parseInt(expiresAt)) {
+      alert("Sesi kamu telah berakhir. Silakan login ulang.");
+      localStorage.removeItem("token");
+      localStorage.removeItem("expiresAt");
+      window.location.href = "login.html";
+    }
+  }
+
+  // Cek saat halaman dibuka dan setiap 30 detik
+  checkSessionExpiration();
+  setInterval(checkSessionExpiration, 30000);
+
+  </script>
+</html>
+

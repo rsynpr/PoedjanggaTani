@@ -1,0 +1,145 @@
+body {
+      background-color: #f5ffee;
+      color: #2f4e2e;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+@media (max-width: 768px) {
+  .navbar form {
+    padding: 8px 0;
+  }
+}
+
+.navbar{
+  background: #1bad20;
+  
+}
+.navbar-nav {
+    margin-right: 10px;
+}
+.nav-item-custom {
+  margin-right: 30px;
+}
+.dropdown-menu {
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+  background-color: #f5ffee;
+  color: #1bb920;
+  font-weight: 500;
+}
+.input-group {
+  max-width: 480px;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: #f5ffee;
+  box-shadow: 0 3px 12px rgba(27, 185, 32, 0.15);
+}
+
+.input-group .form-control {
+  border: none;
+  border-radius: 999px 0 0 999px;
+  padding-left: 1.2rem;
+  background-color: transparent;
+  color: #2f4e2e;
+  font-size: 1rem;
+  
+}
+
+.input-group .form-control::placeholder {
+  color: #aac8a6;
+  font-style:arial;
+}
+
+.input-group .form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.input-group .btn-search {
+  background-color: #1bb920;
+  color: white;
+  border: none;
+  border-radius: 0 999px 999px 0;
+  padding: 0 1.2rem;
+  transition: background 0.3s ease;
+}
+
+.input-group .btn-search:hover {
+  background-color: #168d1c;
+}
+    .profil-container {
+      max-width: 720px;
+      margin: 2rem auto;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+    .profil-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .profil-header h2 {
+      color: #1bb920;
+    }
+    .profil-info label {
+      font-weight: 600;
+    }
+    .btn-edit {
+      background-color: #1bb920;
+      color: #fff;
+    }
+    .btn-edit:hover {
+      background-color: #158a1a;
+    }
+    .whatsapp-float {
+  position: fixed;
+  width: 65px;
+  height: 65px;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #25d366, #1ebea5);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 32px;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.7);
+  z-index: 999;
+  animation: bounce-in 0.6s ease-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(6deg);
+  box-shadow: 0 0 25px rgba(30, 190, 165, 0.9);
+  background: linear-gradient(135deg, #1ebea5, #25d366);
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-10px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.whatsapp-icon {
+  color: white;
+}
+

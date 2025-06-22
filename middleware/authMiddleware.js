@@ -1,28 +1,18 @@
-// middleware/authMiddleware.js
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const jwt = require("jsonwebtoken");
 
-const protect = async (req, res, next) => {
-  let token;
+function verifyToken(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.sendStatus(401);
 
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    try {
-      token = req.headers.authorization.split(' ')[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  const token = authHeader.split(' ')[1];
 
-      req.user = await User.findById(decoded.id).select('-password');
-      next();
-    } catch (error) {
-      res.status(401).json({ message: 'Token tidak valid' });
-    }
-  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return res.sendStatus(403);
 
-  if (!token) {
-    res.status(401).json({ message: 'Tidak ada token, akses ditolak' });
-  }
-};
+    // ✅ decoded.id harus ada
+    req.user = decoded;
+    next();
+  });
+}
 
-module.exports = protect;
+module.exports = { verifyToken };

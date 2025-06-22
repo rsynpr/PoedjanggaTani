@@ -1,0 +1,168 @@
+
+   /* Umum */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5ffee;
+  color: #333;
+}
+
+.container-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: f5ffee;
+}
+
+.auth-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Kiri - Form */
+.auth-form {
+  flex: 1 1 400px;
+  padding: 3rem 2rem;
+}
+
+.auth-form h2 {
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #3e4e36;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+}
+
+.auth-form input:focus {
+  border-color: #66bb6a;
+  outline: none;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #616161;
+}
+
+.auth-form .checkbox {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.auth-form .checkbox input {
+  margin-right: 8px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1bad20;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+  background-color: #66bb6a;
+}
+
+/* Kanan - Ilustrasi */
+.auth-image {
+  flex: 1 1 400px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.auth-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .auth-card {
+    flex-direction: column;
+  }
+
+  .auth-form, .auth-image {
+    flex: 1 1 100%;
+  }
+
+  .auth-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-image {
+    padding: 1.5rem;
+  }
+}
+
+  
+ .whatsapp-float {
+  position: fixed;
+  width: 65px;
+  height: 65px;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #25d366, #1ebea5);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 32px;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.7);
+  z-index: 999;
+  animation: bounce-in 0.6s ease-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(6deg);
+  box-shadow: 0 0 25px rgba(30, 190, 165, 0.9);
+  background: linear-gradient(135deg, #1ebea5, #25d366);
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-10px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.whatsapp-icon {
+  color: white;
+}

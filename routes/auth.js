@@ -1,11 +1,14 @@
-// routes/auth.js
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, getProfile } = require('../controllers/authController');
-const protect = require('../middleware/authMiddleware');
+const authController = require('../controllers/authController');
+const { verifyToken } = require('../middleware/authMiddleware');
 
-router.post('/register', registerUser);
-router.post('/login', loginUser);
-router.get('/me', protect, getProfile);
+
+router.post('/register', authController.register);
+router.post('/login', authController.login);
+router.post('/refresh', authController.refreshToken);
+router.post('/logout', authController.logout);
+router.get('/profile', verifyToken, authController.profile);
+router.put('/profile', verifyToken, authController.updateProfile); // ✅ Tambahkan ini
 
 module.exports = router;
