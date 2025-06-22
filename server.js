@@ -9,24 +9,19 @@ const authRoutes = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS Config Diletakkan di Atas
-const corsOptions = {
+// Middleware
+app.use(cors({
   origin: [
-    'https://poedjangga-tani.vercel.app',
-    'http://localhost:5000'
-  ],
+  'https://poedjangga-tani.vercel.app',
+  'http://localhost:5000' 
+],
   credentials: true
-};
-
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // ⬅️ Ini penting untuk OPTIONS
-
-// Middleware Lain
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Logging opsional
+// Logging opsional (boleh dipertahankan)
 app.use((req, res, next) => {
   if (req.method === "POST") {
     let body = [];
@@ -38,13 +33,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routing API
+// Ini cukup satu kali
 app.use('/api/auth', authRoutes);
 
-// Connect DB & Start Server
+// Database
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('✅ MongoDB connected');
-    app.listen(PORT, () => console.log(`🚀 Server running on PORT ${PORT}`));
+    app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
   })
   .catch(err => console.error('❌ MongoDB connection failed:', err));
