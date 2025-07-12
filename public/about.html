@@ -40,7 +40,8 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 180px;">
           <li><a class="dropdown-item" href="profil.html"><i class="fa-solid fa-user me-2"></i> Profil</a></li>
-          <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
+         <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-cart-shopping me-2"></i> Keranjang</a></li>
+          <li><a class="dropdown-item" href="riwayat.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item text-danger" href="login.html"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Keluar</a></li>
         </ul>
@@ -75,7 +76,8 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 180px;">
             <li><a class="dropdown-item" href="profil.html"><i class="fa-solid fa-user me-2"></i> Profil</a></li>
-            <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
+            <li><a class="dropdown-item" href="keranjang.html"><i class="fa-solid fa-cart-shopping me-2"></i> Keranjang</a></li>
+          <li><a class="dropdown-item" href="riwayat.html"><i class="fa-solid fa-box me-2"></i> Pesanan Saya</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-danger" href="#" onclick="logout()">
  <i class="fa-solid fa-right-from-bracket" style="color: #e60000;"></i> Logout
@@ -187,7 +189,7 @@
         const data = await refresh.json();
         localStorage.setItem("token", data.accessToken);
         options.headers.Authorization = "Bearer " + data.accessToken;
-        response = await fetch(url, options); // retry
+        response = await fetch(url, options); 
       } else {
         localStorage.removeItem("token");
         return null;
@@ -223,7 +225,7 @@
     }
   }
 
-  // Cek saat halaman dibuka dan setiap 30 detik
+
   checkSessionExpiration();
   setInterval(checkSessionExpiration, 30000);
 

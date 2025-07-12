@@ -2,7 +2,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-    background-color: #f5ffee;
+      background: linear-gradient(135deg, #f5ffee, #e3f6da);
 }
 h1 {
     font-weight: 700;
@@ -23,7 +23,7 @@ h2 {
     padding: 8px 0;
   }
 }
- @media (max-width: 991.98px) {
+@media (max-width: 991.98px) {
     .mobile-account {
       position: absolute;
       top: 10px;
@@ -276,4 +276,120 @@ box-shadow: none;
 
 .whatsapp-icon {
   color: white;
+}
+
+#keranjangCount {
+  font-size: 0.75rem;
+  padding: 3px 6px;
+}
+
+.keranjang-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  z-index: 1051;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+
+#keranjangOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 1050;
+  display: none;
+}
+.btn.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+.keranjang-item {
+  animation: fadeInUp 0.4s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.keranjang-item .info {
+  max-width: 50%;
+}
+
+.keranjang-item .controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.keranjang-item .controls span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-detail {
+  background-color: #1bad20;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-detail:hover {
+  background-color: #169219;
+  color: white;
+}
+.riwayat-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 350px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  z-index: 1052;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.riwayat-panel.active {
+  transform: translateX(0);
+}
+
+#riwayatOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 1051;
+  display: none;
 }

@@ -9,6 +9,6 @@ router.post('/login', authController.login);
 router.post('/refresh', authController.refreshToken);
 router.post('/logout', authController.logout);
 router.get('/profile', verifyToken, authController.profile);
-router.put('/profile', verifyToken, authController.updateProfile); // ✅ Tambahkan ini
+router.put('/profile', verifyToken, authController.updateProfile); 
 
 module.exports = router;

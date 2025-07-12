@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riwayat Transaksi - Poedjangga Tani</title>
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/riwayat.css">
+</head>
+<body>
+
+  <div class="container py-4">
+    
+    <h2 class="mb-4 text-center fw-bold">Pesanan Saya dan Riwayat Transaksi</h2>
+    <a href="javascript:history.back()" class="btn btn-custom1 mb-3">
+  <i class="fa-solid fa-arrow-left me-1"></i> Kembali
+</a>
+    <div class="filter-bar justify-content-between">
+      <input type="text" id="cariTransaksi" class="form-control" placeholder="Cari berdasarkan nama produk..." onkeyup="loadRiwayat()">
+      <select id="filterStatus" class="form-select" onchange="loadRiwayat()">
+  <option value="">Semua Status</option>
+  <option value="pending">Pending</option>
+  <option value="menunggu konfirmasi">Menunggu Konfirmasi</option>
+  <option value="diterima">Diterima</option>
+  <option value="dikirim">Dikirim</option>
+  <option value="selesai">Selesai</option>
+  <option value="batal">Batal</option>
+</select>
+    </div>
+    <div id="riwayatContainer" class="row g-4"></div>
+  </div>
+
+
+  <div class="modal fade" id="modalStruk" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Struk Transaksi</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="isiStruk">
+        <p class="text-muted text-center">Memuat struk...</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="printStruk()">Print</button>
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer p-4 text-center text-black">
+  &copy; 2025 Poedjangga Tani. All rights reserved.
+</footer>
+
+<script src="assets/js/script.js"></script>
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Silakan login terlebih dahulu.");
+      window.location.href = "login.html";
+    }
+
+    async function fetchWithToken(url, options = {}) {
+      const res = await fetch(url, {
+        ...options,
+        headers: {
+          ...options.headers,
+          Authorization: `Bearer ${token}`
+        },
+        credentials: 'include'
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+      }
+
+      return res.json();
+    }
+
+    async function loadRiwayat() {
+      const container = document.getElementById('riwayatContainer');
+      const filter = document.getElementById('filterStatus').value.toLowerCase();
+      const keyword = document.getElementById('cariTransaksi').value.toLowerCase();
+
+      container.innerHTML = '<p>Memuat data...</p>';
+
+      try {
+        const transaksi = await fetchWithToken('http://localhost:5000/api/transactions/mine');
+        container.innerHTML = '';
+
+       const filtered = transaksi.filter(trx => {
+  const pembayaran = (trx.statusPembayaran || '').toLowerCase();
+  const pengiriman = (trx.statusPengiriman || '').toLowerCase();
+  const penyelesaian = (trx.statusPenyelesaian || '').toLowerCase();
+
+  let cocokStatus = true;
+
+  if (filter === 'pending') {
+    cocokStatus = pembayaran === 'pending';
+  } else if (filter === 'menunggu konfirmasi') {
+    cocokStatus = pembayaran === 'menunggu konfirmasi';
+  } else if (filter === 'diterima') {
+    cocokStatus = pembayaran === 'diterima';
+  } else if (filter === 'dikirim') {
+    cocokStatus = pengiriman === 'dikirim';
+  } else if (filter === 'selesai') {
+    cocokStatus = penyelesaian === 'selesai';
+  } else if (filter === 'batal') {
+    cocokStatus = penyelesaian === 'batal';
+  }
+
+  const cocokKeyword = trx.items.some(item =>
+    (item.product?.nama || '').toLowerCase().includes(keyword)
+  );
+
+  return cocokStatus && cocokKeyword;
+});
+
+
+
+        if (filtered.length === 0) {
+          container.innerHTML = '<p class="text-muted text-center">Tidak ada transaksi ditemukan.</p>';
+          return;
+        }
+
+        filtered.forEach(trx => {
+          const itemsHtml = trx.items.map(item => `
+            <li>${item.product?.nama || '(Produk dihapus)'} × ${item.quantity}</li>
+          `).join('');
+
+          const imgSrc = trx.items[0]?.product?.gambar || 'assets/img/produk-default.jpg';
+          const badge = (label, status) => `<span class="badge bg-${getBadgeColor(status)}">${status}</span>`;
+
+          const card = document.createElement('div');
+          card.className = 'col-md-6 col-lg-4';
+          card.innerHTML = `
+            <div class="card h-100 shadow-sm">
+              <img src="${imgSrc}" class="card-img-top" alt="Gambar Produk" style="height: 180px; object-fit: cover; border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+              <div class="card-body">
+                <h5 class="card-title">ID: ${trx._id.slice(-6)}</h5>
+                <ul class="mb-2 small">${itemsHtml}</ul>
+                <p class="mb-1"><strong>Total:</strong> Rp${trx.total.toLocaleString('id-ID')}</p>
+                <p class="mb-1"><strong>Tanggal:</strong> ${new Date(trx.createdAt).toLocaleString('id-ID')}</p>
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  ${badge('Pembayaran', trx.statusPembayaran)}
+                  ${badge('Pengiriman', trx.statusPengiriman)}
+                  ${badge('Selesai', trx.statusPenyelesaian)}
+                </div>
+                ${trx.statusPembayaran === 'pending' ? `
+                <input type="file" class="form-control form-control-sm mb-2" onchange="uploadBukti(this, '${trx._id}')">
+                <button class="btn btn-sm btn-danger w-100 mb-2" onclick="batalkanTransaksi('${trx._id}')">Batalkan Transaksi</button>` : ''}
+                
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = '<p class="text-danger text-center">Gagal memuat data transaksi.</p>';
+      }
+    }
+
+    function getBadgeColor(status) {
+      const colorMap = {
+        belum: 'secondary',
+        pending: 'warning',
+        diterima: 'success',
+        dikirim: 'info',
+        selesai: 'success',
+        batal: 'danger',
+        dibatalkan: 'danger'
+      };
+      return colorMap[status] || 'secondary';
+    }
+
+    async function uploadBukti(input, id) {
+      const file = input.files[0];
+      if (!file) return;
+      const formData = new FormData();
+      formData.append('bukti', file);
+
+      try {
+        const res = await fetch(`http://localhost:5000/api/transactions/upload/${id}`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+          credentials: 'include'
+        });
+
+        const result = await res.json();
+        alert(result.message || 'Upload berhasil');
+        loadRiwayat();
+      } catch (err) {
+        console.error(err);
+        alert('Gagal upload bukti');
+      }
+    }
+
+    async function batalkanTransaksi(id) {
+      if (!confirm('Yakin ingin membatalkan transaksi ini?')) return;
+
+      try {
+        const res = await fetch(`http://localhost:5000/api/transactions/${id}/cancel`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${token}` },
+          credentials: 'include'
+        });
+
+        const result = await res.json();
+        alert(result.message || 'Transaksi dibatalkan');
+        loadRiwayat();
+      } catch (err) {
+        console.error(err);
+        alert('Gagal membatalkan transaksi');
+      }
+    }
+
+    function cetakStruk(id) {
+      window.open(`http://localhost:5000/api/transactions/${id}/receipt`, '_blank');
+    }
+
+    window.onload = loadRiwayat;
+  </script>
+  
+</body>
+</html>

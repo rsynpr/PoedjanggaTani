@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Poedjangga Tani</title>
+  <link rel="icon" href="assets/img/logo.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body class="p-4 bg-light">
+<div class="text-end mb-3">
+  <button onclick="logout()" class="btn btn-outline-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+</div>
+<section class="mb-5" id="dashboardAdmin">
+  <div class="text-center mb-4">
+    <img src="assets/img/logo.png" style="width: 150px" />
+    <h2 class="fw-bold">Dashboard Admin</h2>
+    <p>Selamat datang, <strong>admin</strong>. Kelola data Poedjangga Tani dengan lebih baik.</p>
+  </div>
+
+   <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card total-card">
+                    <div class="card-header">Total Produk</div>
+                    <div class="card-body">
+                        <i class="fas fa-box"></i>
+                        <h3 id="totalProduk">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card total-card">
+                    <div class="card-header">Total Transaksi</div>
+                    <div class="card-body">
+                        <i class="fa-solid fa-receipt"></i>
+                        <h3 id="totalTransaksi">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card total-card">
+                    <div class="card-header">Transaksi Hari Ini</div>
+                    <div class="card-body">
+                        <i class="fa-solid fa-receipt"></i>
+                        <h3 id="transaksiHariIni">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card total-card">
+                    <div class="card-header">Total Transaksi Masuk</div>
+                    <div class="card-body">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3 id="totalUangTransaksi">Rp 0</h3>
+                    </div>
+                </div>
+            </div>
+  </div>
+</section>
+
+
+<div class="text-center mb-4">
+  <button class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#tambahProdukModal">
+    <i class="fas fa-box"></i> Tambah Produk
+  </button>
+</div>
+
+
+<div class="modal fade" id="tambahProdukModal" tabindex="-1" aria-labelledby="tambahProdukLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content modal-card-style border-0">
+      <div class="modal-header card-header-custom">
+        <h5 class="modal-title text-white" id="tambahProdukLabel"><i class="fa-solid fa-box-open"></i> Tambah Produk Baru</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="tambahProdukForm">
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nama Produk</label>
+              <input type="text" name="nama" class="form-control" placeholder="Contoh: Bayam Organik" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Harga</label>
+              <input type="number" name="harga" class="form-control" placeholder="Rp" required min="1" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Stok</label>
+              <input type="number" name="stok" class="form-control" placeholder="Jumlah" required min="0" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">URL Gambar</label>
+              <input type="text" name="gambar" class="form-control" placeholder="https://..." />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Kategori</label>
+              <select name="kategori" class="form-select" required>
+                <option value="">Pilih...</option>
+                <option value="sayur">Sayur</option>
+                <option value="buah">Buah</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Satuan</label>
+              <input type="text" name="satuan" class="form-control" placeholder="kg / ikat / buah" required />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-light d-flex justify-content-end">
+          <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Simpan Produk</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<section id="daftar-produk" class="mb-5">
+  <h3 class="mb-3 fw-bold  pb-2"><i class="fas fa-boxes-stacked"></i>  Daftar Produk</h3>
+  <div class="row" id="produkGrid"></div>
+</section>
+
+<div class="modal fade" id="editProdukModal" tabindex="-1" aria-labelledby="editProdukLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content modal-card-style border-0">
+      <div class="modal-header card-header-custom">
+        <h5 class="modal-title text-white" id="editProdukLabel">
+          <i class="fa-solid fa-pen-to-square me-1"></i> Edit Produk
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="editProdukForm">
+        <div class="modal-body">
+          <input type="hidden" id="editId" />
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nama Produk</label>
+              <input type="text" id="editNama" class="form-control" placeholder="Nama Produk" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Harga</label>
+              <input type="number" id="editHarga" class="form-control" placeholder="Harga" required min="1" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Stok</label>
+              <input type="number" id="editStok" class="form-control" placeholder="Stok" required min="0" />
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">URL Gambar (Opsional)</label>
+              <input type="text" id="editGambar" class="form-control" placeholder="URL Gambar" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Kategori</label>
+              <select id="editKategori" class="form-select" required>
+                <option value="">Pilih Kategori</option>
+                <option value="sayur">Sayur</option>
+                <option value="buah">Buah</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Satuan</label>
+              <input type="text" id="editSatuan" class="form-control" placeholder="Satuan (kg, ikat, buah)" required />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-light d-flex justify-content-end">
+          <button type="submit" class="btn btn-success">
+            <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<section id="transaksiSection">
+  <h3 class="mb-3"><i class="fa-solid fa-receipt"></i> Transaksi Masuk</h3>
+  <div id="transaksiList" class="row g-4"></div>
+</section>
+
+
+<footer class="footer p-4 text-center text-black">
+  &copy; 2025 Poedjangga Tani. All rights reserved.
+</footer>
+
+
+
+
+<script>
+const token = localStorage.getItem('token');
+if (!token) {
+  alert('Silakan login terlebih dahulu.');
+  window.location.href = 'login.html';
+}
+
+async function loadProduk() {
+  try {
+    const res = await fetch("http://localhost:5000/api/products");
+    const data = await res.json();
+
+    const grid = document.getElementById("produkGrid");
+    grid.innerHTML = "";
+
+    data.forEach(p => {
+      const col = document.createElement("div");
+      col.className = "col-md-3 col-sm-6 mb-4";
+
+      const gambar = p.gambar || 'https://via.placeholder.com/200x140?text=No+Image';
+      const hargaFormatted = p.harga.toLocaleString('id-ID');
+      const stok = p.stok;
+      const kategori = p.kategori || '-';
+      const satuan = p.satuan || '-';
+
+      col.innerHTML = `
+        <div class="card-produk">
+          <img src="${gambar}" alt="${p.nama}">
+          <h5>${p.nama}</h5>
+          <div class="price">Rp${hargaFormatted} / ${satuan}</div>
+          <div class="stok">Stok: ${stok}</div>
+          <div class="trend text-muted mb-2">Kategori: ${kategori}</div>
+          <button class="btn btn-sm btn-success mt-2" onclick="editProduk('${p._id}')"><i class="fa-solid fa-pen-to-square"></i> Edit</button> 
+          <button class="btn btn-sm btn-danger mt-2" onclick="hapusProduk('${p._id}')"><i class="fa-solid fa-trash me-1"></i> Hapus</button>
+        </div>
+      `;
+
+      grid.appendChild(col);
+    });
+
+  } catch (err) {
+    console.error("Gagal memuat produk:", err);
+    document.getElementById("produkGrid").innerHTML = `
+      <div class="alert alert-danger">Gagal memuat produk. Coba refresh halaman.</div>
+    `;
+  }
+}
+
+async function hapusProduk(id) {
+  if (!confirm("Yakin ingin hapus produk ini?")) return;
+  const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: "Bearer " + token }
+  });
+
+  if (res.ok) {
+    alert("Produk dihapus.");
+    loadProduk();
+  } else {
+    const data = await res.json();
+    alert("Gagal menghapus: " + data.message);
+  }
+}
+async function editProduk(id) {
+  try {
+    const res = await fetch(`http://localhost:5000/api/products/detail/${id}`);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message);
+
+    document.getElementById('editId').value = data._id;
+    document.getElementById('editNama').value = data.nama;
+    document.getElementById('editHarga').value = data.harga;
+    document.getElementById('editStok').value = data.stok;
+    document.getElementById('editGambar').value = data.gambar || '';
+    document.getElementById('editKategori').value = data.kategori || '';
+    document.getElementById('editSatuan').value = data.satuan || '';
+    
+    new bootstrap.Modal(document.getElementById('editProdukModal')).show();
+  } catch (err) {
+    alert(' Gagal mengambil data produk: ' + err.message);
+  }
+}
+
+document.getElementById("editProdukForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const id = document.getElementById('editId').value;
+  const body = {
+    nama: document.getElementById('editNama').value,
+    harga: document.getElementById('editHarga').value,
+    stok: document.getElementById('editStok').value,
+    gambar: document.getElementById('editGambar').value,
+    kategori: document.getElementById('editKategori').value,
+    satuan: document.getElementById('editSatuan').value
+    
+  };
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert(" Produk diperbarui.");
+      bootstrap.Modal.getInstance(document.getElementById('editProdukModal')).hide();
+      loadProduk();
+    } else {
+      alert(" Gagal update: " + data.message);
+    }
+  } catch (err) {
+    alert(' Terjadi kesalahan: ' + err.message);
+  }
+});
+
+document.getElementById("tambahProdukForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const nama = this.nama.value.trim();
+  const harga = parseInt(this.harga.value);
+  const stok = parseInt(this.stok.value);
+  const gambar = this.gambar.value.trim();
+  const kategori = this.kategori.value;
+  const satuan = this.satuan.value;
+
+  const body = { nama, harga, stok, gambar, kategori, satuan };
+
+  try {
+    const res = await fetch("http://localhost:5000/api/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert(" Produk berhasil ditambahkan.");
+      this.reset();
+      bootstrap.Modal.getInstance(document.getElementById('tambahProdukModal')).hide(); 
+      loadProduk(); 
+    } else {
+      alert(" Gagal menambahkan: " + data.message);
+    }
+  } catch (err) {
+    alert(" Terjadi kesalahan: " + err.message);
+  }
+});
+
+async function loadTransaksiAdmin() {
+  const list = document.getElementById("transaksiList");
+  try {
+    const res = await fetch("http://localhost:5000/api/transactions/all", {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    const data = await res.json();
+    console.log("Transaksi dari backend:", data);
+    list.innerHTML = "";
+
+    if (!Array.isArray(data) || data.length === 0) {
+      list.innerHTML = `<div class="alert alert-info">Belum ada transaksi masuk.</div>`;
+      return;
+    }
+
+    data.forEach(trx => {
+      const itemsHtml = trx.items.map(item => `
+        <li>${item.product?.nama || "(Produk dihapus)"} × ${item.quantity}</li>
+      `).join("");
+
+      let buktiHtml = '<span class="text-muted">Belum ada</span>';
+      if (trx.buktiBayar && trx.buktiBayar.trim() && trx.buktiBayar !== "undefined") {
+        const ext = trx.buktiBayar.split('.').pop().toLowerCase();
+        const url = `/uploads/bukti/${trx.buktiBayar}`;
+        if (["jpg", "jpeg", "png", "webp"].includes(ext)) {
+          buktiHtml = `<img src="${url}" alt="Bukti" style="max-width:100%;max-height:180px;border-radius:8px"/>`;
+        } else if (ext === "pdf") {
+          buktiHtml = `<a href="${url}" target="_blank" class="btn btn-outline-primary btn-sm">Lihat PDF</a>`;
+        }
+      }
+
+      const html = `
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5><i class="fa-solid fa-user"></i> ${trx.user?.nama || "-"}</h5>
+              <p><strong>Email:</strong> ${trx.user?.email || "-"}</p>
+              <p><strong>No HP:</strong> ${trx.nohp || "-"}</p>
+              <p><strong>Alamat:</strong> ${trx.alamat}</p>
+              <p><strong>Metode:</strong> ${trx.metodePembayaran}</p>
+              <p><strong>Status Bayar:</strong> <span class="badge bg-${getBadgeColorBayar(trx.statusPembayaran)}">${trx.statusPembayaran}</span></p>
+              <p><strong>Status:</strong> <span class="badge bg-${getBadgeColor(trx.statusPenyelesaian)}">${trx.statusPenyelesaian}</span></p>
+              <p><strong>Total:</strong> Rp${trx.total.toLocaleString('id-ID')}</p>
+              <p><strong>Tanggal:</strong> ${new Date(trx.createdAt).toLocaleString('id-ID')}</p>
+              <p><strong>Produk:</strong><ul>${itemsHtml}</ul></p>
+              <p><strong>Bukti:</strong><br>${buktiHtml}</p>
+              ${getAdminActionButtons(trx)}
+            </div>
+          </div>
+        </div>
+      `;
+      list.innerHTML += html;
+    });
+  } catch (err) {
+    console.error("Gagal ambil transaksi:", err);
+    list.innerHTML = `<div class="alert alert-danger">Gagal memuat transaksi.</div>`;
+  }
+}
+async function loadDashboardStats() {
+  try {
+    
+    const resProduk = await fetch("http://localhost:5000/api/products");
+    const dataProduk = await resProduk.json();
+    document.getElementById("totalProduk").textContent = dataProduk.length;
+
+
+    
+    const resTrx = await fetch("http://localhost:5000/api/transactions/all", {
+      headers: { Authorization: "Bearer " + token }
+    });
+    const dataTrx = await resTrx.json();
+    document.getElementById("totalTransaksi").textContent = dataTrx.length;
+
+    
+    const totalUang = dataTrx.reduce((sum, trx) => sum + (trx.total || 0), 0);
+const elUang = document.getElementById("totalUangTransaksi");
+if (elUang) {
+  elUang.textContent = "Rp " + totalUang.toLocaleString("id-ID");
+} else {
+  console.warn(" Elemen #totalUangTransaksi tidak ditemukan di DOM");
+}
+
+    const today = new Date().toISOString().slice(0, 10); 
+    const trxHariIni = dataTrx.filter(t => t.createdAt && t.createdAt.slice(0, 10) === today);
+    document.getElementById("transaksiHariIni").textContent = trxHariIni.length;
+
+  } catch (err) {
+    console.error(" Gagal memuat statistik dashboard:", err);
+  }
+}
+
+
+function getBadgeColor(status) {
+  if (status === "selesai") return "success";
+  if (status === "batal") return "danger";
+  if (status === "dikirim") return "info";
+  return "warning";
+}
+
+function getBadgeColorBayar(status) {
+  if (status === "diterima") return "success";
+  if (status === "pending" || status === "menunggu konfirmasi") return "warning";
+  if (status === "gagal") return "danger";
+  return "secondary";
+}
+
+function getAdminActionButtons(trx) {
+  let buttons = '';
+  if (trx.statusPembayaran === 'menunggu konfirmasi' && trx.buktiBayar) {
+    buttons += `
+      <button class="btn btn-success btn-sm me-2" onclick="updateStatus('${trx._id}', 'konfirmasiPembayaran')"><i class="fa-solid fa-check"></i> Konfirmasi Pembayaran</button>
+      <button class="btn btn-warning btn-sm me-2 text-white" onclick="updateStatus('${trx._id}', 'tolakPembayaran')"><i class="fa-solid fa-xmark"></i> Tolak Bukti</button>
+      <button class="btn btn-secondary btn-sm me-2" onclick="updateStatus('${trx._id}', 'resetPembayaran')"><i class="fa-solid fa-arrows-spin"></i> Reset Transaksi</button>
+    `;
+  }
+
+  if (trx.statusPenyelesaian === 'belum' && trx.statusPengiriman === 'belum' && trx.statusPembayaran === 'diterima') {
+    buttons += `
+      <button class="btn btn-info btn-sm me-2 text-white" onclick="updateStatus('${trx._id}', 'dikirim')"><i class="fa-solid fa-box"></i> Tandai Dikirim</button>
+      <button class="btn btn-danger btn-sm" onclick="updateStatus('${trx._id}', 'batal')">✖ Batal</button>
+    `;
+  } else if (trx.statusPengiriman === 'dikirim' && trx.statusPenyelesaian === 'belum') {
+    buttons += `
+      <button class="btn btn-success btn-sm" onclick="updateStatus('${trx._id}', 'selesai')"><i class="fa-solid fa-check"></i> Selesaikan</button>
+    `;
+  }
+
+  return `<div class="mt-2">${buttons}</div>`;
+}
+
+async function updateStatus(id, status) {
+  if (!confirm(`Ubah status transaksi ke '${status}'?`)) return;
+
+  if (status === 'resetPembayaran') {
+    try {
+      const res = await fetch(`http://localhost:5000/api/transactions/reset-bukti/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        }
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert(' Bukti pembayaran telah di-reset.');
+        loadTransaksiAdmin();
+      } else {
+        alert(' Gagal reset: ' + data.message);
+      }
+    } catch (err) {
+      console.error('Gagal reset bukti:', err);
+      alert('Terjadi kesalahan saat reset.');
+    }
+    return;
+  }
+
+  const body = {};
+  if (status === 'dikirim') body.pengiriman = 'dikirim';
+  else if (status === 'selesai') body.penyelesaian = 'selesai';
+  else if (status === 'batal') body.penyelesaian = 'batal';
+  else if (status === 'konfirmasiPembayaran') body.pembayaran = 'diterima';
+  else if (status === 'tolakPembayaran') body.pembayaran = 'gagal';
+
+  const res = await fetch(`http://localhost:5000/api/transactions/${id}/status`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token
+    },
+    body: JSON.stringify(body)
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    alert(' Status diperbarui.');
+    loadTransaksiAdmin();
+  } else {
+    alert(' Gagal memperbarui status: ' + data.message);
+  }
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("expiresAt");
+  fetch("http://localhost:5000/api/auth/logout", {
+    method: "POST",
+    credentials: "include"
+  }).finally(() => {
+    window.location.href = "login.html";
+  });
+}
+
+window.onload = () => {
+  loadProduk();
+  loadTransaksiAdmin();
+  loadDashboardStats();
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

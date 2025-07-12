@@ -8,8 +8,6 @@ function verifyToken(req, res, next) {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.sendStatus(403);
-
-    // ✅ decoded.id harus ada
     req.user = decoded;
     next();
   });

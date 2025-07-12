@@ -5,23 +5,22 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
 const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/products');
+const transactionRoutes = require('./routes/transaction');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+
 app.use(cors({
-  origin: [
-  'https://poedjangga-tani.vercel.app',
-  'http://localhost:5000' 
-],
+  origin: (origin, callback) => callback(null, true),
   credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Logging opsional (boleh dipertahankan)
+
 app.use((req, res, next) => {
   if (req.method === "POST") {
     let body = [];
@@ -33,13 +32,15 @@ app.use((req, res, next) => {
   next();
 });
 
-// Ini cukup satu kali
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/transactions', transactionRoutes);
+app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
 
-// Database
+
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log('✅ MongoDB connected');
+    console.log(' MongoDB connected');
     app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
   })
-  .catch(err => console.error('❌ MongoDB connection failed:', err));
+  .catch(err => console.error(' MongoDB connection failed:', err));

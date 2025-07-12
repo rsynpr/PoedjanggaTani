@@ -1,147 +1,196 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Konfirmasi Pembayaran - Poedjangga Tani</title>
-    <link rel="icon" href="assets/img/logo.png" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/css/konfirmasi.css" />
-  </head>
-  <body>
-    <div class="container text-center mt-5">
-      <div class="card-konfirmasi p-4 shadow rounded">
-        <h2>Terima Kasih!</h2>
-        <p>Metode Pembayaran: <strong id="metodeBayar">-</strong></p>
-        <p>Total Pembayaran: <strong id="totalBayar">-</strong></p>
+<head>
+  <meta charset="UTF-8" />
+  <title>Konfirmasi Pembayaran - Poedjangga Tani</title>
+  <link rel="icon" href="assets/img/logo.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/konfirmasi.css" />
+</head>
+<body>
+  <div class="container text-center mt-5">
+    <div class="card-konfirmasi p-4 shadow rounded">
+      <h2>Terima Kasih!</h2>
+      <p>Metode Pembayaran: <strong id="metodeBayar">-</strong></p>
+      <p>Total Pembayaran: <strong id="totalBayar">-</strong></p>
 
-        <!-- Upload Bukti Transfer -->
-        <div id="uploadBuktiWrapper" class="my-4 d-none">
-          <label for="buktiTransfer" class="form-label"
-            >Unggah Bukti Transfer (JPG/PNG/PDF):</label
-          >
-          <input
-            type="file"
-            class="form-control"
-            id="buktiTransfer"
-            accept=".jpg,.jpeg,.png,.pdf"
-          />
-          <div id="previewBukti" class="mt-3"></div>
-        </div>
-
-        <div id="detail-pembayaran" class="text-start mt-4"></div>
-        <p class="mt-3">
-          Pesanan Anda sedang diproses. Kami akan segera menghubungi Anda!
-        </p>
+      <div id="uploadBuktiWrapper" class="my-4 d-none">
+        <label for="buktiTransfer" class="form-label">Unggah Bukti Transfer (JPG/PNG/PDF, maks 2MB):</label>
+        <input type="file" class="form-control" id="buktiTransfer" accept=".jpg,.jpeg,.png,.pdf" />
+        <div id="previewBukti" class="mt-3"></div>
+        <button class="btn btn-success mt-3" id="btnUploadBukti">Kirim Bukti Pembayaran</button>
       </div>
-      <a href="index.html" class="btn btn-light btn-back mt-4"
-        >Kembali ke Beranda</a
-      >
+
+      <div id="detail-pembayaran" class="text-start mt-4"></div>
+      <p class="mt-3">Pesanan Anda sedang diproses. Kami akan segera menghubungi Anda!</p>
     </div>
+    <a href="index.html" class="btn btn-light btn-back mt-4">Kembali ke Beranda</a>
+  </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const metode =
-          localStorage.getItem("metodePembayaran") || "Belum dipilih";
-        const total = localStorage.getItem("totalHarga") || "Rp0";
+  <footer class="footer p-4 text-center text-black">
+    &copy; 2025 Poedjangga Tani. All rights reserved.
+  </footer>
 
-        document.getElementById("metodeBayar").textContent = metode;
-        document.getElementById("totalBayar").textContent = total;
+  <script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const idTransaksi = localStorage.getItem("idTransaksi");
+    const metodeRaw = localStorage.getItem("metodePembayaran");
+    const total = localStorage.getItem("totalHarga");
+    const token = localStorage.getItem("token");
 
-        const detail = document.getElementById("detail-pembayaran");
-        const uploadWrapper = document.getElementById("uploadBuktiWrapper");
+    console.log("📦 Konfirmasi Page Loaded");
+    console.log("🆔 idTransaksi:", idTransaksi);
+    console.log("💳 metodePembayaran:", metodeRaw);
+    console.log("💰 totalHarga:", total);
+    console.log("🔑 token:", token);
 
-        // Tampilkan instruksi dan input upload jika sesuai metode
-        if (metode === "transfer") {
-          detail.innerHTML = `
-          <h5>Transfer ke Rekening:</h5>
-          <ul>
-            <li><strong>Bank:</strong> BCA</li>
-            <li><strong>No Rekening:</strong> 1234567890</li>
-            <li><strong>Atas Nama:</strong> Poedjangga Tani</li>
-          </ul>
-        `;
-          uploadWrapper.classList.remove("d-none");
-        } else if (metode === "ewallet") {
-          detail.innerHTML = `
-          <h5>Pembayaran E-Wallet:</h5>
-          <ul>
-            <li><strong>OVO/DANA/GoPay:</strong> 0812-3456-7890</li>
-          </ul>
+    if (!idTransaksi || !metodeRaw || !total || !token) {
+      alert("Halaman ini tidak bisa diakses langsung.");
+      localStorage.clear();
+      window.location.href = "keranjang.html";
+      return;
+    }
 
-        `;
-          uploadWrapper.classList.remove("d-none");
-        } else if (metode === "cod") {
-          detail.innerHTML = `<p>Pembayaran akan dilakukan di tempat saat pesanan tiba. Terima kasih!</p>`;
-        } else {
-          detail.innerHTML = `<p><em>Metode tidak dikenali atau belum dipilih.</em></p>`;
+    const metode = metodeRaw.toLowerCase();
+    localStorage.removeItem("keranjang");
+
+    
+    document.getElementById("metodeBayar").textContent = metode;
+    document.getElementById("totalBayar").textContent = total;
+
+    const detail = document.getElementById("detail-pembayaran");
+    const uploadWrapper = document.getElementById("uploadBuktiWrapper");
+
+    
+    if (metode === "transfer") {
+      detail.innerHTML = `
+        <h5>Transfer ke Rekening:</h5>
+        <ul>
+          <li><strong>Bank:</strong> BCA</li>
+          <li><strong>No Rekening:</strong> 1234567890</li>
+          <li><strong>Atas Nama:</strong> Poedjangga Tani</li>
+        </ul>`;
+    } else if (metode === "ewallet") {
+      detail.innerHTML = `
+        <h5>Pembayaran E-Wallet:</h5>
+        <ul><li><strong>OVO/DANA/GoPay:</strong> 0812-3456-7890</li></ul>`;
+    } else if (metode === "cod") {
+      detail.innerHTML = `<p>Pembayaran akan dilakukan di tempat saat pesanan tiba. Terima kasih!</p>`;
+    } else {
+      detail.innerHTML = `<p><em>Metode tidak dikenali atau belum dipilih.</em></p>`;
+    }
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/transactions/${idTransaksi}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (!res.ok) throw new Error("Transaksi tidak ditemukan");
+
+      const trx = await res.json();
+      console.log(" Transaksi ditemukan:", trx);
+
+      const status = trx.statusPembayaran;
+
+      if (status === "pending" || status === "menunggu konfirmasi") {
+        uploadWrapper.classList.remove("d-none");
+      } else if (status === "diterima") {
+        detail.insertAdjacentHTML("beforeend", `
+          <div class="alert alert-success mt-3"> Bukti pembayaran sudah diterima.</div>
+        `);
+      } else if (status === "gagal") {
+        detail.insertAdjacentHTML("beforeend", `
+          <div class="alert alert-danger mt-3"> Bukti pembayaran ditolak. Silakan upload ulang atau hubungi admin.</div>
+        `);
+      } else {
+        detail.insertAdjacentHTML("beforeend", `
+          <div class="alert alert-warning mt-3">Status saat ini: ${status}</div>
+        `);
+      }
+    } catch (err) {
+      console.error(" Gagal fetch transaksi:", err);
+      alert("Gagal memuat transaksi. Kamu akan dialihkan ke Riwayat.");
+      window.location.href = "riwayat.html";
+    }
+
+      const buktiInput = document.getElementById("buktiTransfer");
+      const preview = document.getElementById("previewBukti");
+
+      buktiInput.addEventListener("change", function () {
+        preview.innerHTML = "";
+        const file = this.files[0];
+        if (!file) return;
+
+        console.log("📎 File dipilih:", file.name, "| Type:", file.type, "| Size:", file.size);
+
+        if (file.size > 2 * 1024 * 1024) {
+          preview.innerHTML = `<p class="text-danger">Ukuran maksimal 2MB.</p>`;
+          return;
         }
 
-        // Event preview bukti upload
-        const buktiInput = document.getElementById("buktiTransfer");
-        const preview = document.getElementById("previewBukti");
-
-        buktiInput.addEventListener("change", function () {
-          preview.innerHTML = "";
-          const file = this.files[0];
-          if (!file) return;
-
-          if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              const img = document.createElement("img");
-              img.src = e.target.result;
-              img.alt = "Bukti Transfer";
-              img.style.maxWidth = "300px";
-              img.style.borderRadius = "8px";
-              img.classList.add("shadow");
-              preview.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-          } else if (file.type === "application/pdf") {
-            preview.innerHTML = `<p class="text-muted">File PDF terpilih: <strong>${file.name}</strong></p>`;
-          } else {
-            preview.innerHTML = `<p class="text-danger">Format tidak didukung. Gunakan JPG, PNG, atau PDF.</p>`;
-          }
-        });
-
-        // Bersihkan keranjang
-        localStorage.removeItem("keranjang");
+        if (file.type.startsWith("image/")) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.alt = "Bukti Transfer";
+            img.style.maxWidth = "300px";
+            img.style.borderRadius = "8px";
+            img.classList.add("shadow");
+            preview.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        } else if (file.type === "application/pdf") {
+          preview.innerHTML = `<p class="text-muted">File PDF: <strong>${file.name}</strong></p>`;
+        } else {
+          preview.innerHTML = `<p class="text-danger">Format tidak didukung. Gunakan JPG, PNG, atau PDF.</p>`;
+        }
       });
+
+      document.getElementById("btnUploadBukti").addEventListener("click", async () => {
+        const file = buktiInput.files[0];
+        if (!file) return alert("Silakan pilih file bukti terlebih dahulu.");
+
+        if (file.size > 2 * 1024 * 1024) return alert("Ukuran file terlalu besar (maks 2MB).");
+
+        const formData = new FormData();
+        formData.append("bukti", file);
+
+        console.log("📤 Uploading file:", file.name);
+
+        try {
+          const res = await fetch(`http://localhost:5000/api/transactions/upload/${idTransaksi}`, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: formData
+          });
+
+          const data = await res.json();
+          if (res.ok) {
+            alert(" Bukti pembayaran berhasil dikirim.");
+            window.location.href = "riwayat.html";
+          } else {
+            alert(" Gagal mengunggah bukti: " + data.message);
+            console.error("Upload failed:", data);
+          }
+        } catch (err) {
+          alert("Terjadi kesalahan saat mengunggah bukti.");
+          console.error(" Upload error:", err);
+        }
+      });
+
       function checkSessionExpiration() {
-    const expiresAt = localStorage.getItem("expiresAt");
+        const expiresAt = localStorage.getItem("expiresAt");
+        if (expiresAt && Date.now() > parseInt(expiresAt)) {
+          alert("Sesi kamu telah berakhir. Silakan login ulang.");
+          localStorage.clear();
+          window.location.href = "login.html";
+        }
+      }
 
-    if (expiresAt && Date.now() > parseInt(expiresAt)) {
-      alert("Sesi kamu telah berakhir. Silakan login ulang.");
-      localStorage.removeItem("token");
-      localStorage.removeItem("expiresAt");
-      window.location.href = "login.html";
-    }
-  }
-
-  // Cek saat halaman dibuka dan setiap 30 detik
-  checkSessionExpiration();
-  setInterval(checkSessionExpiration, 30000);
-
-  function logout() {
-  // Hapus token & waktu sesi
-  localStorage.removeItem("token");
-  localStorage.removeItem("expiresAt");
-
-  // Coba logout dari server (meskipun token kadaluarsa)
-  fetch("http://localhost:5000/api/auth/logout", {
-    method: "POST",
-    credentials: "include",
-  }).finally(() => {
-    // Tetap arahkan ke login walaupun logout gagal
-    window.location.href = "login.html";
-  });
-}
-    </script>
-  </body>
-  <footer class="footer p-4 text-center text-black">
-  &copy; 2025 Poedjangga Tani. All rights reserved.
-</footer>
+      checkSessionExpiration();
+      setInterval(checkSessionExpiration, 30000);
+    });
+  </script>
+</body>
 </html>

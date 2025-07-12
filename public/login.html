@@ -1,119 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Poedjangga Tani</title>
-    <link rel="icon" href="assets/img/logo.png" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/login.css" />
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Poedjangga Tani</title>
+  <link rel="icon" href="assets/img/logo.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/login.css" />
+</head>
+<body>
+  <div class="container-auth">
+    <div class="auth-card">
+      <div class="auth-form">
+        <img src="assets/img/logo.png" alt="Logo Poedjangga Tani" style="display: block; margin: 0 auto 1rem; width: 100px" />
+        <h2>Masuk</h2>
+        <form id="loginForm">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Contoh: tani@buahsegar.id" required />
+          
+          <label for="password">Kata Sandi</label>
+          <div style="position: relative;">
+            <input type="password" id="password" placeholder="Kata rahasia panenmu" required style="padding-right: 40px;" />
+            <span onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+              <i id="eyeIcon" class="fa-solid fa-eye text-dark"></i>
+            </span>
+          </div>
 
-    <a href="https://wa.me/6289618203695" class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
-        <i class="fab fa-whatsapp whatsapp-icon"></i>
-        </a>
-
-   <div class="container-auth">
-  <div class="auth-card">
-    <!-- Kiri: Form -->
-    <div class="auth-form">
-      <img
-        src="assets/img/logo.png"
-        alt="Logo Poedjangga Tani"
-        style="display: block; margin: 0 auto 1rem; width: 100px"
-      />
-      <h2>Masuk</h2>
-
-      <form id="loginForm">
-  <label for="email">Email</label>
-  <input
-    type="email"
-    id="email"
-    placeholder="Contoh: tani@buahsegar.id"
-    required
-  />
-
-  <label for="password">Kata Sandi</label>
-  <div style="position: relative;">
-    <input
-      type="password"
-      id="password"
-      placeholder="Kata rahasia panenmu"
-      required
-      style="padding-right: 40px;"
-    />
-    <span
-      onclick="togglePassword('password', this)"
-      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #558b2f; font-size: 0.9rem;"
-    >
-     <i class="fa-solid fa-eye" style="color: #000000;"></i>
-    </span>
-  </div>
-
-  <button type="submit">Masuk</button>
-
-  <div class="text-center mt-3">
-    <small>
-      Belum punya akun?
-      <a href="register.html" class="text-decoration-none" style="color: #558b2f;">Daftar di sini</a>
-    </small>
-  </div>
-</form>
-    </div>
-
-    <!-- Kanan: Gambar -->
-    <div class="auth-image">
-      <img src="assets/img/login.png" alt="Login Illustration" />
+          <button type="submit">Masuk</button>
+          <div class="text-center mt-3">
+            <small>Belum punya akun? <a href="register.html" class="text-decoration-none" style="color: #558b2f;">Daftar di sini</a></small>
+          </div>
+        </form>
+      </div>
+      <div class="auth-image">
+        <img src="assets/img/login.png" alt="Login Illustration" />
+      </div>
     </div>
   </div>
-</div>
 
+  <script>
+    function togglePassword() {
+      const input = document.getElementById("password");
+      const icon = document.getElementById("eyeIcon");
+      const isVisible = input.type === "text";
 
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/script.js"></script>
-   <script>
-     document.getElementById("loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    console.log("🟢 Login form submitted");
+      input.type = isVisible ? "password" : "text";
+      icon.classList = isVisible ? "fa-solid fa-eye text-dark" : "fa-solid fa-eye-slash text-dark";
+    }
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    const res = await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-    const raw = await res.text();
+      try {
+        const res = await fetch("http://localhost:5000/api/auth/login", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        const contentType = res.headers.get("content-type");
+const raw = await res.text();
 console.log("🧾 Response raw:", res.status, raw);
 
 let data;
-try {
-  data = JSON.parse(raw);
-} catch (e) {
-  alert("Gagal parsing respons dari server");
+if (contentType && contentType.includes("application/json")) {
+  try {
+    data = JSON.parse(raw);
+  } catch (e) {
+    alert("Format respons tidak bisa diproses.");
+    return;
+  }
+} else {
+  alert("Respons dari server bukan JSON:\n" + raw);
   return;
 }
 
-if (res.ok) {
-  localStorage.setItem("token", data.accessToken);
 
-  // ✅ Tambahkan batas waktu sesi (misal 1 jam dari sekarang)
-  const expiresAt = Date.now() + 60 * 60 * 1000; // 1 jam = 3600000 ms
-  localStorage.setItem("expiresAt", expiresAt);
+        if (res.ok) {
+          localStorage.setItem("token", data.accessToken);
+          localStorage.setItem("expiresAt", Date.now() + 60 * 60 * 1000);
 
-  alert("Login berhasil");
+          alert("Login berhasil");
 
-  // ✅ Arahkan ke index.html (bukan profil)
-  location.href = "index.html";
-}
+        if (data.role === "admin") {
+          window.location.href = "admin.html";
+        } else {
+          window.location.href = "index.html";
+        }
+      } else {
+        alert(data.error || "Login gagal. Coba lagi.");
+      }
+    } catch (err) {
+      alert("Terjadi kesalahan saat menghubungi server.");
+      console.error(" Error:", err);
+    }
   });
   </script>
+</body>
 </html>

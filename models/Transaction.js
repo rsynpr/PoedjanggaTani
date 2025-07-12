@@ -1,25 +1,50 @@
 const mongoose = require('mongoose');
 
-const itemSchema = new mongoose.Schema({
-  productId: {
+const transactionSchema = new mongoose.Schema({
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
+    ref: 'User',
     required: true
   },
-  jumlah: { type: Number, required: true },
-  harga: { type: Number, required: true }
-}, { _id: false }); // penting agar nested array bisa dipopulate
+  items: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
+      },
+      quantity: {
+        type: Number,
+        required: true
+      }
+    }
+  ],
 
-const transactionSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  items: [itemSchema],
-  total: { type: Number, required: true },
+nohp: { type: String, required: true }
+,
+  alamat: { type: String, required: true },
   metodePembayaran: {
     type: String,
-    enum: ['transfer', 'cod', 'ewallet'],
+    enum: ['cod', 'transfer', 'ewallet'],
     required: true
   },
-  status: { type: String, default: 'diproses' }
+  buktiBayar: { type: String, default: '' },
+  statusPembayaran: {
+    type: String,
+    enum: ['pending', 'menunggu konfirmasi', 'diterima', 'gagal'],
+    default: 'pending'
+  },
+  statusPengiriman: {
+    type: String,
+    enum: ['belum', 'dikirim'],
+    default: 'belum'
+  },
+  statusPenyelesaian: {
+    type: String,
+    enum: ['belum', 'selesai', 'batal'],
+    default: 'belum'
+  },
+  total: { type: Number, required: true }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Transaction', transactionSchema);

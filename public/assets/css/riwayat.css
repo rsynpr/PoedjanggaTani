@@ -1,0 +1,40 @@
+body {
+      background-color: #f5ffee;
+      color: #2f4e2e;
+    }
+    h2 {
+      color: #1bad20;
+    }
+    .card-title {
+      font-weight: 600;
+      color: #1bad20;
+    }
+    .badge {
+      text-transform: capitalize;
+    }
+    .card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #e0e0e0;
+      border-radius: 1rem;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0.5rem 1rem rgba(27, 173, 32, 0.15);
+    }
+    .btn-secondary {
+      background-color: #1bad20;
+      border: none;
+    }
+    .btn-secondary:hover {
+      background-color: #169219;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+    .form-select, .form-control {
+      max-width: 250px;
+    }
